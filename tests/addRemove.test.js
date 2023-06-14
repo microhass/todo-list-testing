@@ -1,4 +1,4 @@
-import { createTask, deleteTasks } from './../src/modules/crud';
+import { createTask, deleteTasks } from '../src/modules/crud.js';
 
 describe('Tasks can be added and deleted from the array', () => {
   describe('Add tasks', () => {

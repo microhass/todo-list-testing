@@ -1,7 +1,4 @@
 import { getTasks, saveTasks } from '../src/modules/storage.js';
-import LocalStorageMock from './mocks/localStorage.js';
-
-global.localStorage = LocalStorageMock;
 
 describe('Saving & Accessing from the local storage', () => {
   const tasks = [
