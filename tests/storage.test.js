@@ -1,5 +1,5 @@
-import { getTasks, saveTasks } from '../src/modules/storage';
-import LocalStorageMock from './mocks/localStorage';
+import { getTasks, saveTasks } from '../src/modules/storage.js';
+import LocalStorageMock from './mocks/localStorage.js';
 
 global.localStorage = LocalStorageMock;
 
