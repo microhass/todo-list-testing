@@ -1,60 +1,53 @@
-import { createTask, deleteTasks } from './../src/modules/crud';
 
-describe('Tasks can be added and deleted from the array', () => {
-  describe('Add tasks', () => {
-    test('should add new task to the array', () => {
-      const tasks = [];
-      const description = 'Complete testing';
-      const newTasks = createTask(description, tasks);
-      expect(newTasks).toHaveLength(1);
-      expect(newTasks[0].description).toBe('Complete testing');
-    });
+import { addItem, deleteItem } from './modules/crud.js';
 
-    test('should add to the exixting tasks', () => {
-      const tasks = [
-        {
-          index: 1,
-          description: 'Complete testing',
-          completed: false,
-        },
-      ];
-      const description = 'Second item in tasks';
-      const newTasks = createTask(description, tasks);
-      expect(newTasks).toHaveLength(2);
-      expect(newTasks[1].index).toBe(2);
+jest.mock('./modules/storage.js');
+
+
+describe('CRUD Functions', () => {
+  // 
+  describe('addItem', () => {
+    it('should add an item to the list', () => {
+      
+      const listContainer = document.createElement('div');
+      listContainer.innerHTML = `
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+        </ul>
+      `;
+
+      
+      addItem('Item 3', listContainer);
+
+      
+      const itemList = listContainer.querySelectorAll('li');
+      expect(itemList.length).toBe(3);
+      expect(itemList[2].textContent).toBe('Item 3');
     });
   });
 
-  describe('Delete tasks', () => {
-    test('should remove a task from the array', () => {
-      const tasks = [
-        {
-          index: 1,
-          description: 'Complete testing',
-          completed: false,
-        },
-        {
-          index: 2,
-          description: 'Second item in tasks',
-          completed: true,
-        },
-      ];
-      const newTasks = deleteTasks(tasks);
-      expect(newTasks).toHaveLength(1);
-      expect(newTasks[0]).toEqual(tasks[0]);
-    });
+  
+  describe('deleteItem', () => {
+    it('should delete an item from the list', () => {
+      
+      const listContainer = document.createElement('div');
+      listContainer.innerHTML = `
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      `;
 
-    test('should return empty array if all are completed', () => {
-      const tasks = [
-        {
-          index: 1,
-          description: 'Complete testing',
-          completed: true,
-        },
-      ];
-      const newTasks = deleteTasks(tasks);
-      expect(newTasks).toHaveLength(0);
-      expect(newTasks[0]).toBe(undefined);
+      
+      deleteItem(2, listContainer);
+
+      
+      const itemList = listContainer.querySelectorAll('li');
+      expect(itemList.length).toBe(2);
+      expect(itemList[0].textContent).toBe('Item 1');
+      expect(itemList[1].textContent).toBe('Item 3');
     });
   });
 });
