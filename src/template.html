@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="shortcut icon"
+    href=<%=require("./../images/favicon.png")%> type="image/x-icon"
+    />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <main>
+      <div class="title">
+        <h1>Today's To Do</h1>
+        <div class="themer">
+          <img src=<%=require("./../images/light.png")%> alt="Switch
+          to light theme" title="Switch to light theme" id='light' />
+          <img src=<%=require("./../images/dark.png")%> alt="Switch to
+          light theme" title="Switch to dark theme" id='dark' />
+        </div>
+        <img src= <%=require("./../images/refresh.svg")%>
+        alt="refresh" />
+      </div>
+      <ul class="list">
+        <li draggable="true">
+          <form id="todo-form">
+            <input
+              type="text"
+              name="todo"
+              id="todo"
+              placeholder="Add to your list..."
+            />
+          </form>
+          <img src=<%=require("./../images/submit.png")%> alt="submit"
+          title='Click this or press enter to submit' />
+        </li>
+        <div></div>
+      </ul>
+      <button id="clear" type="button">Clear all completed</button>
+      <div class="notif-container">
+        <div class="notification">notify</div>
+      </div>
+    </main>
+  </body>
+</html>
