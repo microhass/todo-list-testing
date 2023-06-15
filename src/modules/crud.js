@@ -6,6 +6,15 @@ export const createTask = (description, tasks) => {
   return newTasks;
 };
 
+export const markCompleted = (index, tasks) => {
+  const newTasks = [...tasks].map((task) => {
+    if (task.index === index) task.completed = !task.completed;
+    return task;
+  });
+
+  return newTasks;
+};
+
 export const deleteTasks = (tasks) => {
   // Remove completed
   const newTasks = [...tasks].filter((task) => !task.completed);
